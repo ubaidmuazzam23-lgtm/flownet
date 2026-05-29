@@ -1,0 +1,12 @@
+# backend/requirements.txt
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+python-dotenv==1.0.1
+neo4j==5.24.0
+supabase==2.7.4
+tensorflow==2.19.0
+keras==3.10.0
+joblib==1.4.2
+scikit-learn==1.5.1
+numpy==1.26.4
+PyJWT==2.9.0
