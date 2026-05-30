@@ -69,7 +69,7 @@ class SupabaseClient:
 
         return {"account": account, "customer": customer, "branch": branch}
 
-    def get_account_transactions(self, account_id: str, limit: int = 100):
+    def get_account_transactions(self, account_id: str, limit: int = 100000):
         c = self.connect()
         sent = (_retry(lambda: c.table("transactions").select("*")
                        .eq("from_account_id", account_id)

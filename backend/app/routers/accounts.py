@@ -37,7 +37,7 @@ def account_detail(account_id: str):
     br = info.get("branch") or {}
 
     try:
-        txns = supabase_client.get_account_transactions(account_id, limit=100)
+        txns = supabase_client.get_account_transactions(account_id, limit=100000)
     except Exception:
         txns = []
 

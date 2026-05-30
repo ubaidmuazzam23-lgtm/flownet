@@ -8,6 +8,7 @@ const NAV: NavItem[] = [
   { id: "graph",     label: "Graph View", group: "Intelligence", badge: "HOT" },
   { id: "hierarchy", label: "Hierarchy", group: "Intelligence", badge: "NEW" },
   { id: "explorer",  label: "Node Explorer", group: "Intelligence", badge: "NEW" },
+  { id: "analytics", label: "Account Analytics", group: "Intelligence", badge: "NEW" },
   { id: "alerts",    label: "Alerts", group: "Investigations" },
   { id: "circular-alerts", label: "Circular (AML)", group: "Investigations", badge: "NEW" },
   { id: "layering-alerts", label: "Layering (TGN)", group: "Investigations", badge: "NEW" },

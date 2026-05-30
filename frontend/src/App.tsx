@@ -9,10 +9,11 @@ import Hierarchy from "./screens/Hierarchy";
 import NodeExplorer from "./screens/NodeExplorer";
 import CircularAlerts from "./screens/CircularAlerts";
 import LayeringAlerts from "./screens/LayeringAlerts";
+import AccountAnalytics from "./screens/AccountAnalytics";
 import { Sidebar } from "./components/Sidebar";
 import { TopBar } from "./components/TopBar";
 
-type Route = "dashboard" | "alerts" | "account" | "graph" | "hierarchy" | "explorer" | "circular-alerts" | "layering-alerts";
+type Route = "dashboard" | "alerts" | "account" | "graph" | "hierarchy" | "explorer" | "circular-alerts" | "layering-alerts" | "analytics";
 
 export default function App() {
   const [route, setRoute] = useState<Route>("alerts");
@@ -26,6 +27,7 @@ export default function App() {
       case "explorer": return <NodeExplorer />;
       case "circular-alerts": return <CircularAlerts />;
       case "layering-alerts": return <LayeringAlerts />;
+      case "analytics": return <AccountAnalytics />;
       default:
         return (
           <div className="flex-1 grid place-items-center text-ash-400">
