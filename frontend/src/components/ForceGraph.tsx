@@ -180,7 +180,6 @@ export function ForceGraph({
                 onClick={(ev) => { ev.stopPropagation(); onSelectEdge?.(e); }}>
                 <path d={path} fill="none" stroke={layeringMode ? LAYER_COLOR : isClosing ? CYCLE_COLOR : onPath ? "#925CE6" : col} strokeWidth={layeringMode ? w + 2 : isClosing ? w + 2.5 : onPath ? w + 2.5 : w} strokeOpacity={layeringMode ? 0.95 : active || isClosing ? 0.97 : 0.45} markerEnd={layeringMode ? "url(#arrow-lay)" : isClosing ? "url(#arrow-cyc)" : onPath ? "url(#arrow-h4)" : mk} />
                 <path d={path} fill="none" stroke="transparent" strokeWidth={12} />
-                {(active || isClosing || layeringMode) && <circle r={2.6} fill={layeringMode ? LAYER_COLOR : isClosing ? CYCLE_COLOR : col}><animateMotion dur="1.6s" repeatCount="indefinite" path={path} /></circle>}
                 {showLabel && (
                   <g transform={`translate(${cxp},${cyp})`}>
                     <rect x={-18} y={-8} width={36} height={14} rx={3} fill="#0E0C0F" opacity={0.82} stroke={isClosing ? CYCLE_COLOR : active ? col : "#2B262E"} strokeWidth={0.6} />
@@ -201,7 +200,6 @@ export function ForceGraph({
                 onClick={(ev) => { ev.stopPropagation(); onSelect?.(isSel ? null : nd.id); }}
                 onMouseEnter={() => setHover(nd.id)} onMouseLeave={() => setHover(null)}>
                 <circle r={r + (isSel || isOrigin ? 12 : 7)} fill={isOrigin ? FLOW_COLOR : c} opacity={isSel || isOrigin ? 0.24 : flagged ? 0.12 : 0.06} style={{ filter: "blur(5px)" }} />
-                {(flagged && lit) || isOrigin ? <circle r={r + 3} fill="none" stroke={isOrigin ? FLOW_COLOR : c} strokeWidth="1" opacity="0.5" className="pulse-ring" /> : null}
                 <circle r={r} fill={c} fillOpacity="0.25" stroke={isOrigin ? FLOW_COLOR : c} strokeWidth={isSel || isOrigin ? 2.4 : 1.4} />
                 <circle r={2.6} fill={isOrigin ? FLOW_COLOR : c} />
                 {isOrigin && <text y={r + 14} textAnchor="middle" fontFamily="JetBrains Mono, monospace" fontSize="7.5" fill={FLOW_COLOR}>ORIGIN</text>}

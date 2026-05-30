@@ -132,7 +132,7 @@ export default function Alerts() {
 
 function DetailPanel({ accountId }: { accountId: string }) {
   const { data, loading, error } = usePredictionDetail(accountId);
-  const nodeLayer = useNodeLayering(accountId);
+  const nodeLayer = useNodeLayering(accountId).data;
 
   // build a set of "amount|counterparty4" keys the TGN flagged, for highlighting
   const flaggedKey = (cp: string, amount: number) => `${cp.slice(-4)}|${Math.round(amount)}`;

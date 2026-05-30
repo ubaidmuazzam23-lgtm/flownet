@@ -89,13 +89,19 @@ export interface NodeLayering {
 export function useNodeLayering(accountId: string | null) {
   const { getToken } = useAuth();
   const [data, setData] = useState<NodeLayering | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   useEffect(() => {
-    if (!accountId) { setData(null); return; }
+    // reset state for every new id so a previous card's result never leaks in
+    setData(null); setError(null);
+    if (!accountId) { setLoading(false); return; }
     let cancelled = false;
+    setLoading(true);
     apiGet<NodeLayering>(`/layering/node/${accountId}`, getToken)
       .then((r) => { if (!cancelled) setData(r); })
-      .catch(() => { if (!cancelled) setData(null); });
+      .catch((e: any) => { if (!cancelled) setError(e?.message ?? "Could not load TGN data"); })
+      .finally(() => { if (!cancelled) setLoading(false); });
     return () => { cancelled = true; };
   }, [accountId, getToken]);
-  return data;
+  return { data, loading, error };
 }

@@ -9,6 +9,8 @@ const NAV: NavItem[] = [
   { id: "hierarchy", label: "Hierarchy", group: "Intelligence", badge: "NEW" },
   { id: "explorer",  label: "Node Explorer", group: "Intelligence", badge: "NEW" },
   { id: "alerts",    label: "Alerts", group: "Investigations" },
+  { id: "circular-alerts", label: "Circular (AML)", group: "Investigations", badge: "NEW" },
+  { id: "layering-alerts", label: "Layering (TGN)", group: "Investigations", badge: "NEW" },
   { id: "account",   label: "Accounts", group: "Investigations" },
 ];
 
