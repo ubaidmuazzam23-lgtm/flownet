@@ -4,6 +4,7 @@ import { useLayeringAccounts, useNodeLayering } from "../hooks/useLayering";
 import type { LayerAccount } from "../hooks/useLayering";
 import type { GraphNode, GraphEdge } from "../hooks/useGraph";
 import { ForceGraph } from "../components/ForceGraph";
+import { ReportButton } from "../components/ReportButton";
 import { inr, inrFull, shortTime } from "../lib/format";
 import { Loading } from "../components/states/Loading";
 
@@ -202,8 +203,15 @@ function LayerExpansion({ accountId, accountActor }: { accountId: string; accoun
         <ForceGraph nodes={nodes} edges={edges} layeringMode={true} />
       </div>
       <div className="px-4 py-3">
-        <div className="text-[10px] font-mono uppercase tracking-wider text-ash-500 mb-2">
-          TGN-flagged transactions · sorted by probability
+        <div className="flex items-center justify-between mb-2">
+          <div className="text-[10px] font-mono uppercase tracking-wider text-ash-500">
+            TGN-flagged transactions · sorted by probability
+          </div>
+          <ReportButton
+            path={`/reports/layering/${accountId}`}
+            filename={`FlowNet-STR-Layering-${accountId}.pdf`}
+            size="sm"
+          />
         </div>
         <div className="space-y-1.5">
           {node.flagged.map((t, i) => (

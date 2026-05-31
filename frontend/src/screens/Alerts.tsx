@@ -3,6 +3,7 @@ import { useState } from "react";
 import { usePredictions } from "../hooks/usePredictions";
 import { usePredictionDetail } from "../hooks/usePredictionDetail";
 import { useLayeringAccounts, useNodeLayering } from "../hooks/useLayering";
+import { ReportButton } from "../components/ReportButton";
 import { fraudStyle, confidenceTier } from "../lib/fraudTypes";
 import { inr, inrFull, shortTime } from "../lib/format";
 import { Loading } from "../components/states/Loading";
@@ -163,6 +164,13 @@ function DetailPanel({ accountId }: { accountId: string }) {
             style={{ borderColor: tier.color + "55", background: tier.color + "12", color: tier.color }}>
             {tier.label} · {(p.confidence * 100).toFixed(1)}%
           </span>
+        </div>
+        <div className="mt-3">
+          <ReportButton
+            path={`/reports/account/${p.account_id}`}
+            filename={`FlowNet-STR-Account-${p.account_id}.pdf`}
+            size="sm"
+          />
         </div>
         {/* account context */}
         <div className="mt-3 grid grid-cols-2 gap-2 text-[11px]">

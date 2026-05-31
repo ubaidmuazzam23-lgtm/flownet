@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import { useCycles } from "../hooks/useGraph";
 import type { Cycle, GraphEdge } from "../hooks/useGraph";
 import { ForceGraph } from "../components/ForceGraph";
+import { ReportButton } from "../components/ReportButton";
 import { inr, inrFull } from "../lib/format";
 import { Loading } from "../components/states/Loading";
 import { ErrorState } from "../components/states/ErrorState";
@@ -131,8 +132,24 @@ function LoopCard({ cycle, index, expanded, onToggle }: {
             <CycleGraph cycle={cycle} />
           </div>
           <div className="px-4 py-3">
-          <div className="text-[10px] font-mono uppercase tracking-wider text-ash-500 mb-2">
-            Real transfers · in order
+          <div className="flex items-center justify-between mb-2">
+            <div className="text-[10px] font-mono uppercase tracking-wider text-ash-500">
+              Real transfers · in order
+            </div>
+            <ReportButton
+              path={`/reports/cycle`}
+              body={{
+                path: cycle.path,
+                edges: cycle.edges,
+                amount: cycle.amount,
+                hops: cycle.hops,
+                similarity: cycle.similarity,
+                duration_hours: cycle.duration_hours,
+                fast: cycle.fast,
+              }}
+              filename={`FlowNet-STR-Cycle-${cycle.path[0]?.account_id || "loop"}.pdf`}
+              size="sm"
+            />
           </div>
           <div className="space-y-1.5">
             {cycle.edges.map((e, i) => {

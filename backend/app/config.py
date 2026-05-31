@@ -24,6 +24,11 @@ class Settings:
     CLERK_SECRET_KEY: str = os.getenv("CLERK_SECRET_KEY", "")
     CLERK_JWKS_URL: str = os.getenv("CLERK_JWKS_URL", "")
 
+    # LLM (used only to write the Part D narrative on FIU STR reports).
+    # If missing or the API call fails, reports fall back to a deterministic template.
+    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
+    OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
+
     # ---- App ----
     # CORS origin for the Vite dev server
     FRONTEND_ORIGIN: str = os.getenv("FRONTEND_ORIGIN", "http://localhost:5173")

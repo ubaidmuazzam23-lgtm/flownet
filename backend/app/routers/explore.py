@@ -50,6 +50,7 @@ def _verdict(account_id: str):
 class HAccount(BaseModel):
     account_id: str
     holder: Optional[str] = None
+    person_id: Optional[str] = None  # for sharing one Person node across accounts
     fraud_type: Optional[str] = None
     confidence: Optional[float] = None
     flagged: bool = False

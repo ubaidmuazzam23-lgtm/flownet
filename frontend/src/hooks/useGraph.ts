@@ -16,6 +16,8 @@ export interface GraphNode {
   ovTag?: string | null;
 }
 export interface GraphEdge {
+  /** structural edges (Region->City->Branch->Account, Person->Account) — render without amount */
+  nonTransactional?: boolean;
   source: string;
   target: string;
   amount: number;

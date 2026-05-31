@@ -150,7 +150,8 @@ class Neo4jClient:
                 coalesce(br.branch_name, br.name, toString(br.branch_id)) AS branch,
                 toString(br.branch_id) AS branch_id,
                 toString(a.account_no) AS account_id,
-                p.name AS holder
+                p.name AS holder,
+                coalesce(toString(p.person_id), toString(id(p)), p.name) AS person_id
             ORDER BY region, city, branch, account_id
             LIMIT $limit
         """

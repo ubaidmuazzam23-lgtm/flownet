@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
 from app.db.neo4j_client import neo4j_client
-from app.routers import predictions, accounts, graph, explore, layering
+from app.routers import predictions, accounts, graph, explore, layering, reports
 
 app = FastAPI(title="FlowNet AI", version="0.5.0")
 
@@ -28,6 +28,7 @@ app.include_router(accounts.router)
 app.include_router(graph.router)
 app.include_router(explore.router)
 app.include_router(layering.router)
+app.include_router(reports.router)
 
 
 @app.on_event("shutdown")

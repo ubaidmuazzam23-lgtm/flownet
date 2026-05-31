@@ -7,6 +7,7 @@ import { apiGet } from "../lib/api";
 export interface HAccount {
   account_id: string;
   holder: string | null;
+  person_id: string | null;
   fraud_type: string | null;
   confidence: number | null;
   flagged: boolean;

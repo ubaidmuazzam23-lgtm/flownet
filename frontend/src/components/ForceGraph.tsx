@@ -157,7 +157,7 @@ export function ForceGraph({
           {edges.map((e, i) => {
             const a = map[e.source], b = map[e.target];
             if (!a || !b) return null;
-            const lit = edgeLit(e), dim = focus && !lit, w = edgeWidth(e.amount);
+            const lit = edgeLit(e), dim = focus && !lit, w = e.nonTransactional ? 0.8 : edgeWidth(e.amount);
             const isIn = !!focus && e.target === focus;
             const col = edgeColor(e, lit || traceMode, isIn);
             const ra = nodeRadius(a) + 4, rb = nodeRadius(b) + 8;
@@ -183,7 +183,7 @@ export function ForceGraph({
                 {showLabel && (
                   <g transform={`translate(${cxp},${cyp})`}>
                     <rect x={-18} y={-8} width={36} height={14} rx={3} fill="#0E0C0F" opacity={0.82} stroke={isClosing ? CYCLE_COLOR : active ? col : "#2B262E"} strokeWidth={0.6} />
-                    <text textAnchor="middle" dy={2.5} fontFamily="JetBrains Mono, monospace" fontSize={8} fill={isClosing ? "#FF6B7A" : active ? col : "#A8A2B0"}>{shortAmt(e.amount)}</text>
+                    {e.nonTransactional ? (active && <text textAnchor="middle" dy={2.5} fontFamily="JetBrains Mono, monospace" fontSize={7.5} fill="#7C8CF8" letterSpacing="0.5">NON-TXN</text>) : <text textAnchor="middle" dy={2.5} fontFamily="JetBrains Mono, monospace" fontSize={8} fill={isClosing ? "#FF6B7A" : active ? col : "#A8A2B0"}>{shortAmt(e.amount)}</text>}
                   </g>
                 )}
               </g>
