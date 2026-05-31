@@ -1,0 +1,15 @@
+# backend/requirements.docker.txt
+# Used by Dockerfile. Excludes tensorflow + torch because the Dockerfile
+# installs CPU-only versions explicitly to keep image size down.
+fastapi==0.115.0
+uvicorn[standard]==0.30.6
+python-dotenv==1.0.1
+neo4j==5.24.0
+supabase==2.7.4
+keras==3.10.0
+joblib==1.4.2
+scikit-learn==1.5.1
+numpy==1.26.4
+PyJWT==2.9.0
+reportlab==4.2.5
+openai==1.54.4

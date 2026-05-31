@@ -1,0 +1,39 @@
+# Fly.io configuration for FlowNet AI backend
+# Generated for the small VM tier with auto-stop to stay within free credits.
+
+app = "flownet-ai-backend"  # change this if "flownet-ai-backend" is taken
+primary_region = "bom"       # Mumbai — close to your Supabase + Neo4j Aura
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT = "8000"
+  PYTHONUNBUFFERED = "1"
+
+[http_service]
+  internal_port = 8000
+  force_https = true
+  auto_stop_machines = "stop"   # sleep when idle — saves credits
+  auto_start_machines = true    # wake on incoming request
+  min_machines_running = 0      # 0 = fully on-demand
+  processes = ["app"]
+
+  [http_service.concurrency]
+    type = "requests"
+    hard_limit = 25
+    soft_limit = 20
+
+[[vm]]
+  cpu_kind = "shared"
+  cpus = 1
+  memory_mb = 1024              # 1 GB — enough for TF model + a few requests
+
+[checks]
+  [checks.health]
+    type = "http"
+    interval = "30s"
+    timeout = "5s"
+    grace_period = "60s"        # TF needs time to load on cold start
+    method = "GET"
+    path = "/health"

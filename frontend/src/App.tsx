@@ -10,16 +10,24 @@ import NodeExplorer from "./screens/NodeExplorer";
 import CircularAlerts from "./screens/CircularAlerts";
 import LayeringAlerts from "./screens/LayeringAlerts";
 import AccountAnalytics from "./screens/AccountAnalytics";
+import Dashboard from "./screens/Dashboard";
 import { Sidebar } from "./components/Sidebar";
 import { TopBar } from "./components/TopBar";
 
 type Route = "dashboard" | "alerts" | "account" | "graph" | "hierarchy" | "explorer" | "circular-alerts" | "layering-alerts" | "analytics";
 
 export default function App() {
-  const [route, setRoute] = useState<Route>("alerts");
+  const [route, setRoute] = useState<Route>("dashboard");
+  const [routeParams, setRouteParams] = useState<Record<string, string>>({});
+
+  const navigate = (r: string, params?: Record<string, string>) => {
+    setRoute(r as Route);
+    setRouteParams(params || {});
+  };
 
   function renderScreen() {
     switch (route) {
+      case "dashboard": return <Dashboard onNav={navigate} />;
       case "alerts": return <Alerts />;
       case "account": return <Account />;
       case "graph": return <GraphView />;
@@ -45,7 +53,7 @@ export default function App() {
       <SignedOut><Login /></SignedOut>
       <SignedIn>
         <div className="flex h-screen w-screen overflow-hidden bg-ink-900 text-ash-100">
-          <Sidebar active={route} onNav={(r) => setRoute(r as Route)} />
+          <Sidebar active={route} onNav={(r) => navigate(r)} />
           <div className="flex-1 flex flex-col min-w-0">
             <TopBar screenLabel={route} />
             {renderScreen()}
